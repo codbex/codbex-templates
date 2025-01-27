@@ -1,0 +1,5 @@
+{
+    "module": "codbex-templates/gen/codbex-templates/ui/launchpad/Home/view.js",
+    "extensionPoint": "codbex-templates-view",
+    "description": "codbex-templates - Application View"
+}

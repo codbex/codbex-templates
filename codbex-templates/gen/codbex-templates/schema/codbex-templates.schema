@@ -1,0 +1,39 @@
+{
+    "schema": {
+        "structures": [
+            {
+                "name": "CODBEX_DOCUMENTTEMPLATE",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "DOCUMENTTEMPLATE_ID"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "DOCUMENTTEMPLATE_TYPE"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 10000,
+                        "name": "DOCUMENTTEMPLATE_CONTENT"
+                    }
+                ]
+            },
+            {
+                "name": "DocumentTemplate_Number",
+                "type": "foreignKey",
+                "table": "CODBEX_DOCUMENTTEMPLATE",
+                "constraintName": "DocumentTemplate_Number",
+                "columns": "DOCUMENTTEMPLATE_TYPE",
+                "referencedTable": "CODBEX_NUMBER",
+                "referencedColumns": "NUMBER_ID"
+            }
+        ]
+    },
+    "datasource": "DefaultDB"
+}
