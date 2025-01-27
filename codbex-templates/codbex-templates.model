@@ -1,0 +1,180 @@
+{
+    "model": {
+        "entities": [
+            {
+                "properties": [
+                    {
+                        "dataAutoIncrement": "true",
+                        "dataName": "DOCUMENTTEMPLATE_ID",
+                        "dataNullable": "true",
+                        "dataPrimaryKey": "true",
+                        "dataType": "INTEGER",
+                        "description": "",
+                        "name": "Id",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataName": "DOCUMENTTEMPLATE_TYPE",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "description": "",
+                        "name": "Type",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTAREA",
+                        "relationshipName": "DocumentTemplate_Number",
+                        "relationshipEntityName": "Number",
+                        "relationshipEntityPerspectiveName": "Numbers",
+                        "relationshipEntityPerspectiveLabel": "Numbers"
+                    },
+                    {
+                        "dataLength": "10000",
+                        "dataName": "DOCUMENTTEMPLATE_CONTENT",
+                        "dataNullable": "false",
+                        "dataType": "VARCHAR",
+                        "description": "",
+                        "isRequiredProperty": "true",
+                        "name": "Content",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    }
+                ],
+                "caption": "Manage entity DocumentTemplate",
+                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}DOCUMENTTEMPLATE\"",
+                "dataName": "DOCUMENTTEMPLATE",
+                "dataQuery": "",
+                "description": "Manage entity DocumentTemplate",
+                "feedPassword": "Z2hwX0RLcFJzSUZNUnJYSllEWHBhN2NURGpNSWNMbEx5czExMWFkTg==",
+                "feedUsername": "TXJnb2JsaW5ncw==",
+                "generateReport": "false",
+                "icon": "/services/web/resources/unicons/file.svg",
+                "layoutType": "MANAGE",
+                "menuIndex": "100",
+                "menuKey": "documenttemplate",
+                "menuLabel": "DocumentTemplate",
+                "name": "DocumentTemplate",
+                "navigationPath": "/Home",
+                "perspectiveIcon": "/services/web/resources/unicons/notes.svg",
+                "perspectiveLabel": "Templates",
+                "perspectiveName": "Templates",
+                "perspectiveOrder": "1000",
+                "perspectiveRole": "",
+                "title": "DocumentTemplate",
+                "tooltip": "DocumentTemplate",
+                "type": "PRIMARY"
+            },
+            {
+                "properties": [
+                    {
+                        "dataAutoIncrement": "true",
+                        "dataName": "NUMBER_ID",
+                        "dataNullable": "true",
+                        "dataPrimaryKey": "true",
+                        "dataType": "INTEGER",
+                        "description": "",
+                        "name": "Id",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataLength": "50",
+                        "dataName": "NUMBER_TYPE",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "dataUnique": "true",
+                        "description": "",
+                        "name": "Type",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "50",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataLength": "20",
+                        "dataName": "NUMBER_PREFIX",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "dataUnique": "true",
+                        "description": "",
+                        "name": "Prefix",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataName": "NUMBER_LENGTH",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "description": "",
+                        "name": "Length",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "NUMBER"
+                    },
+                    {
+                        "dataName": "NUMBER_VALUE",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "description": "",
+                        "name": "Value",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "NUMBER"
+                    }
+                ],
+                "caption": "Manage entity Number",
+                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}NUMBER\"",
+                "dataName": "NUMBER",
+                "dataQuery": "",
+                "description": "Manage entity Number",
+                "generateReport": "false",
+                "icon": "/services/web/resources/unicons/file.svg",
+                "layoutType": "MANAGE",
+                "menuIndex": "100",
+                "menuKey": "number",
+                "menuLabel": "Number",
+                "name": "Number",
+                "navigationPath": "/Home",
+                "perspectiveIcon": "/services/web/resources/unicons/10-plus.svg",
+                "perspectiveLabel": "Numbers",
+                "perspectiveName": "Numbers",
+                "perspectiveOrder": "100",
+                "perspectiveRole": "",
+                "projectionReferencedEntity": "Number",
+                "projectionReferencedModel": "/workspace/codbex-number-generator/codbex-number-generator.model",
+                "title": "Number",
+                "tooltip": "Number",
+                "type": "PROJECTION"
+            }
+        ],
+        "perspectives": [
+            {
+                "name": "Templates",
+                "label": "Templates",
+                "icon": "/services/web/resources/unicons/notes.svg",
+                "order": "1000",
+                "role": {}
+            }
+        ],
+        "navigations": []
+    }
+}

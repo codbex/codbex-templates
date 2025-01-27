@@ -1,5 +1,13 @@
 {
     "guid": "codbex-templates",
+    "dependencies": [
+        {
+            "guid": "codbex-number-generator",
+            "type": "git",
+            "url": "https://github.com/codbex/codbex-number-generator.git",
+            "branch": "main"
+        },
+    ],
     "actions": [
         {
             "name": "Build TypeScript",
