@@ -4,13 +4,13 @@
   "brandUrl": "https://www.codbex.com/",
   "title": "Codbex Templates",
   "description": "All Document Templates",
+  "fileName": "codbex-templates",
+  "genFolderName": "codbex-templates",
+  "dataSource": "DefaultDB",
   "projectName": "codbex-templates",
   "workspaceName": "workspace",
   "filePath": "codbex-templates.model",
   "templateId": "template-application-angular/template/template.js",
-  "fileName": "codbex-templates",
-  "genFolderName": "codbex-templates",
-  "dataSource": "DefaultDB",
   "perspectives": {
     "Templates": {
       "views": [
@@ -66,10 +66,12 @@
           "description": "",
           "name": "Type",
           "tooltip": "",
+          "widgetDropDownKey": "Id",
+          "widgetDropDownValue": "Type",
           "widgetIsMajor": true,
           "widgetLength": "20",
           "widgetSize": "",
-          "widgetType": "TEXTAREA",
+          "widgetType": "DROPDOWN",
           "relationshipName": "DocumentTemplate_Number",
           "relationshipEntityName": "Number",
           "relationshipEntityPerspectiveName": "Numbers",
@@ -81,16 +83,15 @@
           "isRequiredProperty": false,
           "isCalculatedProperty": false,
           "widgetLabel": "Type",
-          "widgetDropdownUrl": "",
+          "widgetDropdownUrl": "/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Numbers/NumberService.ts",
           "dataTypeJava": "int",
           "dataTypeTypescript": "number",
           "inputRule": ""
         },
         {
-          "dataLength": "10000",
           "dataName": "DOCUMENTTEMPLATE_CONTENT",
           "dataNullable": false,
-          "dataType": "VARCHAR",
+          "dataType": "BLOB",
           "description": "",
           "isRequiredProperty": true,
           "name": "Content",
@@ -98,7 +99,7 @@
           "widgetIsMajor": true,
           "widgetLength": "20",
           "widgetSize": "",
-          "widgetType": "TEXTBOX",
+          "widgetType": "TEXTAREA",
           "dataNotNull": true,
           "dataAutoIncrement": false,
           "dataPrimaryKey": false,
@@ -106,10 +107,8 @@
           "isCalculatedProperty": false,
           "widgetLabel": "Content",
           "widgetDropdownUrl": "",
-          "dataTypeJava": "string",
-          "dataTypeTypescript": "string",
-          "minLength": 0,
-          "maxLength": 20,
+          "dataTypeJava": "",
+          "dataTypeTypescript": "unknown",
           "inputRule": ""
         }
       ],
@@ -147,7 +146,8 @@
       "primaryKeys": [
         "Id"
       ],
-      "primaryKeysString": "Id"
+      "primaryKeysString": "Id",
+      "hasDropdowns": true
     },
     {
       "properties": [

@@ -24,6 +24,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			$scope.entity = params.entity;
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
+			$scope.optionsType = params.optionsType;
 		}
 
 		$scope.create = function () {
@@ -55,6 +56,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		};
 
+		$scope.serviceType = "/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Numbers/NumberService.ts";
 
 		$scope.cancel = function () {
 			$scope.entity = {};

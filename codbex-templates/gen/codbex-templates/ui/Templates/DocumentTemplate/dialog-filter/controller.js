@@ -14,6 +14,7 @@ angular.module('page', ["ideUI", "ideView"])
 			$scope.entity = params.entity ?? {};
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
+			$scope.optionsType = params.optionsType;
 		}
 
 		$scope.filter = function () {
@@ -41,9 +42,6 @@ angular.module('page', ["ideUI", "ideView"])
 			}
 			if (entity.Type !== undefined) {
 				filter.$filter.equals.Type = entity.Type;
-			}
-			if (entity.Content) {
-				filter.$filter.contains.Content = entity.Content;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,

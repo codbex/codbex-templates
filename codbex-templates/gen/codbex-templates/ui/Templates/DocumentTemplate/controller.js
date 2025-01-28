@@ -5,7 +5,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 	.config(["entityApiProvider", function (entityApiProvider) {
 		entityApiProvider.baseUrl = "/services/ts/codbex-templates/gen/codbex-templates/api/Templates/DocumentTemplateService.ts";
 	}])
-	.controller('PageController', ['$scope', 'messageHub', 'entityApi', 'Extensions', function ($scope, messageHub, entityApi, Extensions) {
+	.controller('PageController', ['$scope', '$http', 'messageHub', 'entityApi', 'Extensions', function ($scope, $http, messageHub, entityApi, Extensions) {
 
 		$scope.dataPage = 1;
 		$scope.dataCount = 0;
@@ -107,12 +107,14 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("DocumentTemplate-details", {
 				action: "select",
 				entity: entity,
+				optionsType: $scope.optionsType,
 			});
 		};
 
 		$scope.openFilter = function (entity) {
 			messageHub.showDialogWindow("DocumentTemplate-filter", {
 				entity: $scope.filterEntity,
+				optionsType: $scope.optionsType,
 			});
 		};
 
@@ -121,6 +123,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("DocumentTemplate-details", {
 				action: "create",
 				entity: {},
+				optionsType: $scope.optionsType,
 			}, null, false);
 		};
 
@@ -128,6 +131,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("DocumentTemplate-details", {
 				action: "update",
 				entity: entity,
+				optionsType: $scope.optionsType,
 			}, null, false);
 		};
 
@@ -159,5 +163,28 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				}
 			});
 		};
+
+		//----------------Dropdowns-----------------//
+		$scope.optionsType = [];
+
+
+		$http.get("/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Numbers/NumberService.ts").then(function (response) {
+			$scope.optionsType = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Type
+				}
+			});
+		});
+
+		$scope.optionsTypeValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsType.length; i++) {
+				if ($scope.optionsType[i].value === optionKey) {
+					return $scope.optionsType[i].text;
+				}
+			}
+			return null;
+		};
+		//----------------Dropdowns-----------------//
 
 	}]);
