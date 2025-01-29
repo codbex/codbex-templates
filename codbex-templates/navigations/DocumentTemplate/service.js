@@ -3,7 +3,7 @@ const navigationData = {
     label: "Document Template",
     group: "configurations",
     order: 800,
-    link: "/services/web/codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/index.html?embedded"
+    link: "/services/web/codbex-templates/gen/codbex-templates/ui/Templates/index.html?embedded"
 };
 
 function getNavigation() {

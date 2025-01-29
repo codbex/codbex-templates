@@ -255,8 +255,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 33
-                    contains:
-                      Content: "abcd"
                     greaterThan:
                       Id: 0
                     lessThanOrEqual:
@@ -273,12 +271,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 0
-              countWithContains:
-                summary: Count with Contains
-                value:
-                  $filter:
-                    contains:
-                      Content: "abcd"
               countWithGreaterThan:
                 summary: Count with Greater Than
                 value:
@@ -341,8 +333,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 33
-                    contains:
-                      Content: "abcd"
                     greaterThan:
                       Id: 0
                     lessThanOrEqual:
@@ -359,12 +349,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 0
-              searchWithContains:
-                summary: Search with Contains
-                value:
-                  $filter:
-                    contains:
-                      Content: "abcd"
               searchWithGreaterThan:
                 summary: Search with Greater Than
                 value:
@@ -425,9 +409,6 @@ components:
           type: integer
           format: int32
         Content:
-          type: string
-          minLength: 0
-          maxLength: 10000
     DocumentTemplateFilterOptions:
       type: object
       properties:
@@ -455,15 +436,6 @@ components:
                         format: int32
                 Content:
                   oneOf:
-                    - type: string
-                      minLength: 0
-                      maxLength: 10000
-                    - type: array
-                      items:
-                        type: string
-                        format: double
-                        minLength: 0
-                        maxLength: 10000
             notEquals:
               type: object
               properties:
@@ -485,24 +457,12 @@ components:
                         format: int32
                 Content:
                   oneOf:
-                    - type: string
-                      minLength: 0
-                      maxLength: 10000
-                    - type: array
-                      items:
-                        type: string
-                        format: double
-                        minLength: 0
-                        maxLength: 10000
             contains:
               type: object
               properties:
                 Id:
                 Type:
                 Content:
-                  type: string
-                  minLength: 0
-                  maxLength: 10000
             greaterThan:
               type: object
               properties:
@@ -513,9 +473,6 @@ components:
                   type: integer
                   format: int32
                 Content:
-                  type: string
-                  minLength: 0
-                  maxLength: 10000
             greaterThanOrEqual:
               type: object
               properties:
@@ -526,9 +483,6 @@ components:
                   type: integer
                   format: int32
                 Content:
-                  type: string
-                  minLength: 0
-                  maxLength: 10000
             lessThan:
               type: object
               properties:
@@ -539,9 +493,6 @@ components:
                   type: integer
                   format: int32
                 Content:
-                  type: string
-                  minLength: 0
-                  maxLength: 10000
             lessThanOrEqual:
               type: object
               properties:
@@ -552,9 +503,6 @@ components:
                   type: integer
                   format: int32
                 Content:
-                  type: string
-                  minLength: 0
-                  maxLength: 10000
         $select:
           type: array
           example: ["Id", "Type", "Content"]

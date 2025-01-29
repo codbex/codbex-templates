@@ -24,20 +24,21 @@
                         "description": "",
                         "name": "Type",
                         "tooltip": "",
+                        "widgetDropDownKey": "Id",
+                        "widgetDropDownValue": "Type",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
                         "widgetSize": "",
-                        "widgetType": "TEXTAREA",
+                        "widgetType": "DROPDOWN",
                         "relationshipName": "DocumentTemplate_Number",
                         "relationshipEntityName": "Number",
                         "relationshipEntityPerspectiveName": "Numbers",
                         "relationshipEntityPerspectiveLabel": "Numbers"
                     },
                     {
-                        "dataLength": "10000",
                         "dataName": "DOCUMENTTEMPLATE_CONTENT",
                         "dataNullable": "false",
-                        "dataType": "VARCHAR",
+                        "dataType": "BLOB",
                         "description": "",
                         "isRequiredProperty": "true",
                         "name": "Content",
@@ -45,7 +46,7 @@
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
                         "widgetSize": "",
-                        "widgetType": "TEXTBOX"
+                        "widgetType": "TEXTAREA"
                     }
                 ],
                 "caption": "Manage entity DocumentTemplate",

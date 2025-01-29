@@ -122,9 +122,6 @@ class DocumentTemplateService {
         if (entity.Content === null || entity.Content === undefined) {
             throw new ValidationError(`The 'Content' property is required, provide a valid value`);
         }
-        if (entity.Content?.length > 10000) {
-            throw new ValidationError(`The 'Content' exceeds the maximum length of [10000] characters`);
-        }
         for (const next of validationModules) {
             next.validate(entity);
         }

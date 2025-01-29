@@ -6,12 +6,12 @@ import { dao as daoApi } from "sdk/db";
 export interface DocumentTemplateEntity {
     readonly Id: number;
     Type?: number;
-    Content: string;
+    Content: unknown;
 }
 
 export interface DocumentTemplateCreateEntity {
     readonly Type?: number;
-    readonly Content: string;
+    readonly Content: unknown;
 }
 
 export interface DocumentTemplateUpdateEntity extends DocumentTemplateCreateEntity {
@@ -23,37 +23,37 @@ export interface DocumentTemplateEntityOptions {
         equals?: {
             Id?: number | number[];
             Type?: number | number[];
-            Content?: string | string[];
+            Content?: unknown | unknown[];
         };
         notEquals?: {
             Id?: number | number[];
             Type?: number | number[];
-            Content?: string | string[];
+            Content?: unknown | unknown[];
         };
         contains?: {
             Id?: number;
             Type?: number;
-            Content?: string;
+            Content?: unknown;
         };
         greaterThan?: {
             Id?: number;
             Type?: number;
-            Content?: string;
+            Content?: unknown;
         };
         greaterThanOrEqual?: {
             Id?: number;
             Type?: number;
-            Content?: string;
+            Content?: unknown;
         };
         lessThan?: {
             Id?: number;
             Type?: number;
-            Content?: string;
+            Content?: unknown;
         };
         lessThanOrEqual?: {
             Id?: number;
             Type?: number;
-            Content?: string;
+            Content?: unknown;
         };
     },
     $select?: (keyof DocumentTemplateEntity)[],
@@ -98,7 +98,7 @@ export class DocumentTemplateRepository {
             {
                 name: "Content",
                 column: "DOCUMENTTEMPLATE_CONTENT",
-                type: "VARCHAR",
+                type: "BLOB",
                 required: true
             }
         ]

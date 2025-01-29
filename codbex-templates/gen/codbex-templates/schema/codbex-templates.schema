@@ -18,8 +18,7 @@
                         "name": "DOCUMENTTEMPLATE_TYPE"
                     },
                     {
-                        "type": "VARCHAR",
-                        "length": 10000,
+                        "type": "BLOB",
                         "name": "DOCUMENTTEMPLATE_CONTENT"
                     }
                 ]
