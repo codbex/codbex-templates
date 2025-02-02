@@ -98,7 +98,7 @@ export class DocumentTemplateRepository {
             {
                 name: "Content",
                 column: "DOCUMENTTEMPLATE_CONTENT",
-                type: "BLOB",
+                type: "CLOB",
                 required: true
             }
         ]

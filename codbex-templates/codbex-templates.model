@@ -38,7 +38,7 @@
                     {
                         "dataName": "DOCUMENTTEMPLATE_CONTENT",
                         "dataNullable": "false",
-                        "dataType": "BLOB",
+                        "dataType": "CLOB",
                         "description": "",
                         "isRequiredProperty": "true",
                         "name": "Content",

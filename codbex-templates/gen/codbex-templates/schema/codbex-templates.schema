@@ -18,7 +18,7 @@
                         "name": "DOCUMENTTEMPLATE_TYPE"
                     },
                     {
-                        "type": "BLOB",
+                        "type": "CLOB",
                         "name": "DOCUMENTTEMPLATE_CONTENT"
                     }
                 ]
