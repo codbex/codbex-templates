@@ -1,0 +1,37 @@
+{
+  "files": [
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/SalesInvoice/sales-invoice-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/PurchaseInvoice/purchase-invoice-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/PayrollEntry/payroll-entry-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    }
+  ]
+}
