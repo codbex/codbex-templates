@@ -54,6 +54,28 @@
       "delimEnclosing": "\"",
       "distinguishEmptyFromNull": true,
       "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/SalesOrder/sales-order-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/SalesOrder/purchase-order-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
     }
   ]
 }
