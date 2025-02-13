@@ -1,0 +1,81 @@
+{
+  "files": [
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/SalesInvoice/sales-invoice-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/PurchaseInvoice/purchase-invoice-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/PayrollEntry/payroll-entry-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/DeliveryNote/delivery-note-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/GoodsIssue/goods-issue-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/SalesOrder/sales-order-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    },
+    {
+      "table": "CODBEX_DOCUMENTTEMPLATE",
+      "schema": "PUBLIC",
+      "file": "/codbex-templates/data/PurchaseOrder/purchase-order-print.csv",
+      "header": true,
+      "useHeaderNames": false,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": "1.1"
+    }
+  ]
+}
