@@ -69,7 +69,7 @@
     {
       "table": "CODBEX_DOCUMENTTEMPLATE",
       "schema": "PUBLIC",
-      "file": "/codbex-templates/data/SalesOrder/purchase-order-print.csv",
+      "file": "/codbex-templates/data/PurchaseOrder/purchase-order-print.csv",
       "header": true,
       "useHeaderNames": false,
       "delimField": ",",
