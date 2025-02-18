@@ -5,7 +5,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 	.config(["entityApiProvider", function (entityApiProvider) {
 		entityApiProvider.baseUrl = "/services/ts/codbex-templates/gen/codbex-templates/api/Templates/DocumentTemplateService.ts";
 	}])
-	.controller('PageController', ['$scope', 'messageHub', 'ViewParameters', 'entityApi', function ($scope, messageHub, ViewParameters, entityApi) {
+	.controller('PageController', ['$scope',  '$http', 'messageHub', 'ViewParameters', 'entityApi', function ($scope,  $http, messageHub, ViewParameters, entityApi) {
 
 		$scope.entity = {};
 		$scope.forms = {
@@ -57,6 +57,17 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		};
 
 		$scope.serviceType = "/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Numbers/NumberService.ts";
+		
+		$scope.optionsType = [];
+		
+		$http.get("/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Numbers/NumberService.ts").then(function (response) {
+			$scope.optionsType = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Type
+				}
+			});
+		});
 
 		$scope.cancel = function () {
 			$scope.entity = {};

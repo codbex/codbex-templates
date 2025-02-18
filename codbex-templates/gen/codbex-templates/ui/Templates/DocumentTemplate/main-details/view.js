@@ -4,11 +4,11 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "DocumentTemplate",
+    id: "DocumentTemplate-details",
     label: "DocumentTemplate",
     factory: "frame",
-    region: "left",
-    link: "/services/web/codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/index.html",
+    region: "center",
+    link: "/services/web/codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/main-details/index.html",
     perspectiveName: "Templates",
 };
 
