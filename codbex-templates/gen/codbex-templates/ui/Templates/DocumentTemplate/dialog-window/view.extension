@@ -1,1 +1,1 @@
-{"module":"codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/dialog-window/view.js","extensionPoint":"codbex-templates-dialog-window","description":"codbex-templates - Application Dialog Window"}
+{"module":"codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/dialog-window/view.js","extensionPoint":"dialog-window","description":"codbex-templates - Application Dialog Window"}

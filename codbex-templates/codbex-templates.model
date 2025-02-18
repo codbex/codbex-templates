@@ -58,7 +58,7 @@
                 "feedUsername": "TXJnb2JsaW5ncw==",
                 "generateReport": "false",
                 "icon": "/services/web/resources/unicons/file.svg",
-                "layoutType": "MANAGE",
+                "layoutType": "MANAGE_MASTER",
                 "menuIndex": "100",
                 "menuKey": "documenttemplate",
                 "menuLabel": "DocumentTemplate",
