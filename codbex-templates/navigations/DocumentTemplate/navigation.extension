@@ -1,5 +1,6 @@
 {
     "extensionPoint": "dashboard-navigations",
     "module": "codbex-templates/navigations/DocumentTemplate/service.js",
-    "description": "Document Templates Navigation"
+    "description": "Document Templates Navigation",
+    "role": "admin"
 }
