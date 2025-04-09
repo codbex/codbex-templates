@@ -32,8 +32,8 @@
                         "widgetType": "DROPDOWN",
                         "relationshipName": "DocumentTemplate_Number",
                         "relationshipEntityName": "Number",
-                        "relationshipEntityPerspectiveName": "Numbers",
-                        "relationshipEntityPerspectiveLabel": "Numbers"
+                        "relationshipEntityPerspectiveName": "Settings",
+                        "relationshipEntityPerspectiveLabel": "Settings"
                     },
                     {
                         "dataName": "DOCUMENTTEMPLATE_CONTENT",
@@ -56,6 +56,7 @@
                 "description": "Manage entity DocumentTemplate",
                 "feedPassword": "Z2hwX0RLcFJzSUZNUnJYSllEWHBhN2NURGpNSWNMbEx5czExMWFkTg==",
                 "feedUsername": "TXJnb2JsaW5ncw==",
+                "generateDefaultRoles": "false",
                 "generateReport": "false",
                 "icon": "/services/web/resources/unicons/file.svg",
                 "layoutType": "MANAGE_MASTER",
@@ -63,11 +64,12 @@
                 "menuKey": "documenttemplate",
                 "menuLabel": "DocumentTemplate",
                 "name": "DocumentTemplate",
-                "navigationPath": "/Home",
+                "perspectiveHeader": "",
                 "perspectiveIcon": "/services/web/resources/unicons/notes.svg",
                 "perspectiveLabel": "Templates",
                 "perspectiveName": "Templates",
-                "perspectiveOrder": "1000",
+                "perspectiveNavId": "configurations-navigation-group",
+                "perspectiveOrder": "800",
                 "perspectiveRole": "",
                 "title": "DocumentTemplate",
                 "tooltip": "DocumentTemplate",
@@ -147,6 +149,7 @@
                 "dataName": "NUMBER",
                 "dataQuery": "",
                 "description": "Manage entity Number",
+                "generateDefaultRoles": "false",
                 "generateReport": "false",
                 "icon": "/services/web/resources/unicons/file.svg",
                 "layoutType": "MANAGE",
@@ -154,10 +157,11 @@
                 "menuKey": "number",
                 "menuLabel": "Number",
                 "name": "Number",
-                "navigationPath": "/Home",
+                "perspectiveHeader": "",
                 "perspectiveIcon": "/services/web/resources/unicons/10-plus.svg",
-                "perspectiveLabel": "Numbers",
-                "perspectiveName": "Numbers",
+                "perspectiveLabel": "Settings",
+                "perspectiveName": "Settings",
+                "perspectiveNavId": "",
                 "perspectiveOrder": "100",
                 "perspectiveRole": "",
                 "projectionReferencedEntity": "Number",
@@ -171,9 +175,9 @@
             {
                 "name": "Templates",
                 "label": "Templates",
+                "navId": "configurations-navigation-group",
                 "icon": "/services/web/resources/unicons/notes.svg",
-                "order": "1000",
-                "role": {}
+                "order": "800"
             }
         ],
         "navigations": []

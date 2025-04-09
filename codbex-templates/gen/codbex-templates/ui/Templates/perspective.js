@@ -5,14 +5,12 @@
  */
 const perspectiveData = {
 	id: 'Templates',
-	name: 'Templates',
-	link: '/services/web/codbex-templates/gen/codbex-templates/ui/Templates/index.html',
-	order: 1000,
-	icon: '/services/web/resources/unicons/notes.svg',
+	label: 'Templates',
+	path: '/services/web/codbex-templates/gen/codbex-templates/ui/Templates/index.html',
+	groupId: 'configurations-navigation-group',
+	order: 800,
+	icon: '/services/web/resources/unicons/notes.svg'
 };
-
 if (typeof exports !== 'undefined') {
-	exports.getPerspective = function () {
-		return perspectiveData;
-	}
+	exports.getPerspective = () => perspectiveData;
 }

@@ -6,12 +6,9 @@
 const viewData = {
     id: "DocumentTemplate-details",
     label: "DocumentTemplate",
-    link: "/services/web/codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/dialog-window/index.html",
+    path: "/services/web/codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/dialog-window/index.html",
     perspectiveName: "Templates",
 };
-
 if (typeof exports !== 'undefined') {
-    exports.getDialogWindow = function () {
-        return viewData;
-    }
+    exports.getView = () => viewData;
 }

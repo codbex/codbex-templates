@@ -1,5 +1,5 @@
 {
     "module": "codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/dialog-filter/view.js",
-    "extensionPoint": "dialog-window",
+    "extensionPoint": "application-windows",
     "description": "codbex-templates - Application Dialog Window"
 }
