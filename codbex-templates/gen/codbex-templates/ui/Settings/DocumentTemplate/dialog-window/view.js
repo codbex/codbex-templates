@@ -4,10 +4,10 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "DocumentTemplate-details",
-    label: "DocumentTemplate",
-    path: "/services/web/codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/dialog-window/index.html",
-    perspectiveName: "Templates",
+    id: 'DocumentTemplate-details',
+    label: 'DocumentTemplate',
+    path: '/services/web/codbex-templates/gen/codbex-templates/ui/Settings/DocumentTemplate/dialog-window/index.html',
+    perspectiveName: 'Settings'
 };
 if (typeof exports !== 'undefined') {
     exports.getView = () => viewData;

@@ -1,0 +1,5 @@
+{
+    "module": "codbex-templates/gen/codbex-templates/ui/Settings/DocumentTemplate/view.js",
+    "extensionPoint": "application-settings",
+    "description": "codbex-templates - Application View"
+}

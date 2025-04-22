@@ -1,6 +1,6 @@
 angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 	.config(['EntityServiceProvider', (EntityServiceProvider) => {
-		EntityServiceProvider.baseUrl = '/services/ts/codbex-templates/gen/codbex-templates/api/Templates/DocumentTemplateService.ts';
+		EntityServiceProvider.baseUrl = '/services/ts/codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateService.ts';
 	}])
 	.controller('PageController', ($scope, $http, ViewParameters, EntityService) => {
 		const Dialogs = new DialogHub();
@@ -28,7 +28,7 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 			let entity = $scope.entity;
 			entity[$scope.selectedMainEntityKey] = $scope.selectedMainEntityId;
 			EntityService.create(entity).then((response) => {
-				Dialogs.postMessage({ topic: 'codbex-templates.Templates.DocumentTemplate.entityCreated', data: response.data });
+				Dialogs.postMessage({ topic: 'codbex-templates.Settings.DocumentTemplate.entityCreated', data: response.data });
 				Dialogs.showAlert({
 					title: 'DocumentTemplate',
 					message: 'DocumentTemplate successfully created',
@@ -49,13 +49,13 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 			let entity = $scope.entity;
 			entity[$scope.selectedMainEntityKey] = $scope.selectedMainEntityId;
 			EntityService.update(id, entity).then((response) => {
-				Dialogs.postMessage({ topic: 'codbex-templates.Templates.DocumentTemplate.entityUpdated', data: response.data });
-				$scope.cancel();
+				Dialogs.postMessage({ topic: 'codbex-templates.Settings.DocumentTemplate.entityUpdated', data: response.data });
 				Dialogs.showAlert({
 					title: 'DocumentTemplate',
 					message: 'DocumentTemplate successfully updated',
 					type: AlertTypes.Success
 				});
+				$scope.cancel();
 			}, (error) => {
 				const message = error.data ? error.data.message : '';
 				$scope.$evalAsync(() => {
@@ -70,10 +70,12 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 		$scope.optionsType = [];
 		
 		$http.get('/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Settings/NumberService.ts').then((response) => {
-			$scope.optionsType = response.data.map(e => ({
-				value: e.Id,
-				text: e.Type
-			}));
+			$scope.optionsType = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Type
+				}
+			});
 		}, (error) => {
 			console.error(error);
 			const message = error.data ? error.data.message : '';

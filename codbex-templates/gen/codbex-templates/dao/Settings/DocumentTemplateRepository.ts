@@ -58,7 +58,7 @@ export interface DocumentTemplateEntityOptions {
     },
     $select?: (keyof DocumentTemplateEntity)[],
     $sort?: string | (keyof DocumentTemplateEntity)[],
-    $order?: 'asc' | 'desc',
+    $order?: 'ASC' | 'DESC',
     $offset?: number,
     $limit?: number,
 }
@@ -107,7 +107,7 @@ export class DocumentTemplateRepository {
     private readonly dao;
 
     constructor(dataSource = "DefaultDB") {
-        this.dao = daoApi.create(DocumentTemplateRepository.DEFINITION, null, dataSource);
+        this.dao = daoApi.create(DocumentTemplateRepository.DEFINITION, undefined, dataSource);
     }
 
     public findAll(options?: DocumentTemplateEntityOptions): DocumentTemplateEntity[] {
@@ -197,7 +197,7 @@ export class DocumentTemplateRepository {
     }
 
     private async triggerEvent(data: DocumentTemplateEntityEvent | DocumentTemplateUpdateEntityEvent) {
-        const triggerExtensions = await extensions.loadExtensionModules("codbex-templates-Templates-DocumentTemplate", ["trigger"]);
+        const triggerExtensions = await extensions.loadExtensionModules("codbex-templates-Settings-DocumentTemplate", ["trigger"]);
         triggerExtensions.forEach(triggerExtension => {
             try {
                 triggerExtension.trigger(data);
@@ -205,6 +205,6 @@ export class DocumentTemplateRepository {
                 console.error(error);
             }            
         });
-        producer.topic("codbex-templates-Templates-DocumentTemplate").send(JSON.stringify(data));
+        producer.topic("codbex-templates-Settings-DocumentTemplate").send(JSON.stringify(data));
     }
 }
