@@ -9,9 +9,9 @@ externalDocs:
 servers:
   - url: /services/ts
 tags:
-  - name: Templates
+  - name: Settings
 paths:
-  /codbex-templates/gen/codbex-templates/api/Templates/DocumentTemplateService.ts:
+  /codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateService.ts:
     get:
       summary: List DocumentTemplate
       parameters:
@@ -32,7 +32,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - Templates
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -63,7 +63,7 @@ paths:
     post:
       summary: Create DocumentTemplate
       tags:
-        - Templates
+        - Settings
       requestBody:
         content:
           application/json:
@@ -95,7 +95,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-templates/gen/codbex-templates/api/Templates/DocumentTemplateService.ts/{id}:
+  /codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateService.ts/{id}:
     get:
       summary: Get DocumentTemplate by Id
       parameters:
@@ -106,7 +106,7 @@ paths:
           schema:
             type: string
       tags:
-        - Templates
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -144,7 +144,7 @@ paths:
           schema:
             type: string
       tags:
-        - Templates
+        - Settings
       requestBody:
         content:
           application/json:
@@ -192,7 +192,7 @@ paths:
           schema:
             type: string
       tags:
-        - Templates
+        - Settings
       responses:
         204:
           description: Successful Request
@@ -214,11 +214,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-templates/gen/codbex-templates/api/Templates/DocumentTemplateService.ts/count:
+  /codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateService.ts/count:
     get:
       summary: Count the number of DocumentTemplate
       tags:
-        - Templates
+        - Settings
       responses:
         200:
           description: Successful Request
@@ -242,7 +242,7 @@ paths:
     post:
       summary: Count the number of DocumentTemplate by DocumentTemplateFilterOptions
       tags:
-        - Templates
+        - Settings
       requestBody:
         content:
           application/json:
@@ -316,11 +316,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-templates/gen/codbex-templates/api/Templates/DocumentTemplateService.ts/search:
+  /codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateService.ts/search:
     post:
       summary: Search DocumentTemplate by DocumentTemplateFilterOptions
       tags:
-        - Templates
+        - Settings
       requestBody:
         content:
           application/json:

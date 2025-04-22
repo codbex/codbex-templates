@@ -6,8 +6,8 @@
 const viewData = {
     id: 'DocumentTemplate-filter',
     label: 'DocumentTemplate Filter',
-    path: '/services/web/codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/dialog-filter/index.html',
-    perspectiveName: 'Templates'
+    path: '/services/web/codbex-templates/gen/codbex-templates/ui/Settings/DocumentTemplate/dialog-filter/index.html',
+    perspectiveName: 'Settings'
 };
 if (typeof exports !== 'undefined') {
     exports.getView = () => viewData;

@@ -1,18 +1,17 @@
 angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 	.config(['EntityServiceProvider', (EntityServiceProvider) => {
-		EntityServiceProvider.baseUrl = '/services/ts/codbex-templates/gen/codbex-templates/api/Templates/DocumentTemplateService.ts';
+		EntityServiceProvider.baseUrl = '/services/ts/codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateService.ts';
 	}])
 	.controller('PageController', ($scope, $http, EntityService, Extensions, ButtonStates) => {
 		const Dialogs = new DialogHub();
 		$scope.dataPage = 1;
 		$scope.dataCount = 0;
-		$scope.dataOffset = 0;
-		$scope.dataLimit = 10;
-		$scope.action = 'select';
+		$scope.dataLimit = 20;
 
 		//-----------------Custom Actions-------------------//
 		Extensions.getWindows(['codbex-templates-custom-action']).then((response) => {
-			$scope.pageActions = response.data.filter(e => e.perspective === 'Templates' && e.view === 'DocumentTemplate' && (e.type === 'page' || e.type === undefined));
+			$scope.pageActions = response.data.filter(e => e.perspective === 'Settings' && e.view === 'DocumentTemplate' && (e.type === 'page' || e.type === undefined));
+			$scope.entityActions = response.data.filter(e => e.perspective === 'Settings' && e.view === 'DocumentTemplate' && e.type === 'entity');
 		});
 
 		$scope.triggerPageAction = (action) => {
@@ -23,36 +22,35 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 				closeButton: true
 			});
 		};
+
+		$scope.triggerEntityAction = (action) => {
+			Dialogs.showWindow({
+				hasHeader: true,
+        		title: action.label,
+				path: action.path,
+				params: {
+					id: $scope.entity.Id
+				},
+				closeButton: true
+			});
+		};
 		//-----------------Custom Actions-------------------//
 
-		function refreshData() {
-			$scope.dataReset = true;
-			$scope.dataPage--;
-		}
-
 		function resetPagination() {
-			$scope.dataReset = true;
 			$scope.dataPage = 1;
 			$scope.dataCount = 0;
-			$scope.dataLimit = 10;
+			$scope.dataLimit = 20;
 		}
+		resetPagination();
 
 		//-----------------Events-------------------//
-		Dialogs.addMessageListener({ topic: 'codbex-templates.Templates.DocumentTemplate.clearDetails', handler: () => {
-			$scope.$evalAsync(() => {
-				$scope.selectedEntity = null;
-				$scope.action = 'select';
-			});
-		}});
-		Dialogs.addMessageListener({ topic: 'codbex-templates.Templates.DocumentTemplate.entityCreated', handler: () => {
-			refreshData();
+		Dialogs.addMessageListener({ topic: 'codbex-templates.Settings.DocumentTemplate.entityCreated', handler: () => {
 			$scope.loadPage($scope.dataPage, $scope.filter);
 		}});
-		Dialogs.addMessageListener({ topic: 'codbex-templates.Templates.DocumentTemplate.entityUpdated', handler: () => {
-			refreshData();
+		Dialogs.addMessageListener({ topic: 'codbex-templates.Settings.DocumentTemplate.entityUpdated', handler: () => {
 			$scope.loadPage($scope.dataPage, $scope.filter);
 		}});
-		Dialogs.addMessageListener({ topic: 'codbex-templates.Templates.DocumentTemplate.entitySearch', handler: () => {
+		Dialogs.addMessageListener({ topic: 'codbex-templates.Settings.DocumentTemplate.entitySearch', handler: (data) => {
 			resetPagination();
 			$scope.filter = data.filter;
 			$scope.filterEntity = data.entity;
@@ -64,43 +62,35 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 			if (!filter && $scope.filter) {
 				filter = $scope.filter;
 			}
-			if (!filter) {
-				filter = {};
-			}
-			$scope.selectedEntity = null;
+			$scope.dataPage = pageNumber;
 			EntityService.count(filter).then((resp) => {
 				if (resp.data) {
 					$scope.dataCount = resp.data.count;
 				}
-				$scope.dataPages = Math.ceil($scope.dataCount / $scope.dataLimit);
-				filter.$offset = ($scope.dataPage - 1) * $scope.dataLimit;
-				filter.$limit = $scope.dataLimit;
-				if ($scope.dataReset) {
-					filter.$offset = 0;
-					filter.$limit = $scope.dataPage * $scope.dataLimit;
+				let offset = (pageNumber - 1) * $scope.dataLimit;
+				let limit = $scope.dataLimit;
+				let request;
+				if (filter) {
+					filter.$offset = offset;
+					filter.$limit = limit;
+					request = EntityService.search(filter);
+				} else {
+					request = EntityService.list(offset, limit);
 				}
-
-				EntityService.search(filter).then((response) => {
-					if ($scope.data == null || $scope.dataReset) {
-						$scope.data = [];
-						$scope.dataReset = false;
-					}
-					$scope.data = $scope.data.concat(response.data);
-					$scope.dataPage++;
+				request.then((response) => {
+					$scope.data = response.data;
 				}, (error) => {
-					const message = error.data ? error.data.message : '';
 					Dialogs.showAlert({
 						title: 'DocumentTemplate',
-						message: `Unable to list/filter DocumentTemplate: '${message}'`,
+						message: `Unable to list/filter DocumentTemplate: '${error.message}'`,
 						type: AlertTypes.Error
 					});
 					console.error('EntityService:', error);
 				});
 			}, (error) => {
-				const message = error.data ? error.data.message : '';
 				Dialogs.showAlert({
 					title: 'DocumentTemplate',
-					message: `Unable to count DocumentTemplate: '${message}'`,
+					message: `Unable to count DocumentTemplate: '${error.message}'`,
 					type: AlertTypes.Error
 				});
 				console.error('EntityService:', error);
@@ -110,34 +100,60 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 
 		$scope.selectEntity = (entity) => {
 			$scope.selectedEntity = entity;
-			Dialogs.postMessage({ topic: 'codbex-templates.Templates.DocumentTemplate.entitySelected', data: {
-				entity: entity,
-				selectedMainEntityId: entity.Id,
-				optionsType: $scope.optionsType,
-			}});
+		};
+
+		$scope.openDetails = (entity) => {
+			$scope.selectedEntity = entity;
+			Dialogs.showWindow({
+				id: 'DocumentTemplate-details',
+				params: {
+					action: 'select',
+					entity: entity,
+					optionsType: $scope.optionsType,
+				},
+				closeButton: true,
+			});
+		};
+
+		$scope.openFilter = (entity) => {
+			Dialogs.showWindow({
+				id: 'DocumentTemplate-details',
+				params: {
+					entity: $scope.filterEntity,
+					optionsType: $scope.optionsType,
+				},
+				closeButton: true,
+			});
 		};
 
 		$scope.createEntity = () => {
 			$scope.selectedEntity = null;
-			$scope.action = 'create';
-
-			Dialogs.postMessage({ topic: 'codbex-templates.Templates.DocumentTemplate.createEntity', data: {
-				entity: {},
-				optionsType: $scope.optionsType,
-			}});
+			Dialogs.showWindow({
+				id: 'DocumentTemplate-details',
+				params: {
+					action: 'create',
+					entity: {},
+					optionsType: $scope.optionsType,
+				},
+				closeButton: false,
+			});
 		};
 
-		$scope.updateEntity = () => {
-			$scope.action = 'update';
-			Dialogs.postMessage({ topic: 'codbex-templates.Templates.DocumentTemplate.updateEntity', data: {
-				entity: $scope.selectedEntity,
-				optionsType: $scope.optionsType,
-			}});
+		$scope.updateEntity = (entity) => {
+			Dialogs.showWindow({
+				id: 'DocumentTemplate-details',
+				params: {
+					action: 'update',
+					entity: entity,
+					optionsType: $scope.optionsType,
+				},
+				closeButton: false,
+			});
 		};
 
-		$scope.deleteEntity = () => {
-			let id = $scope.selectedEntity.Id;
-			Dialogs.showDialog({
+		$scope.deleteEntity = (entity) => {
+			let id = entity.Id;
+			Dialog.showDialog({
 				title: 'Delete DocumentTemplate?',
 				message: `Are you sure you want to delete DocumentTemplate? This action cannot be undone.`,
 				buttons: [{
@@ -147,14 +163,12 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 				}, {
 					id: 'delete-btn-no',
 					label: 'No',
-				}],
-				closeButton: false
+				}]
 			}).then((buttonId) => {
 				if (buttonId === 'delete-btn-yes') {
-					EntityService.delete(id).then(() => {
-						refreshData();
+					EntityService.delete(id).then((response) => {
 						$scope.loadPage($scope.dataPage, $scope.filter);
-						Dialogs.triggerEvent('codbex-templates.Templates.DocumentTemplate.clearDetails');
+						Dialogs.triggerEvent('codbex-templates.Settings.DocumentTemplate.clearDetails');
 					}, (error) => {
 						const message = error.data ? error.data.message : '';
 						Dialogs.showAlert({
@@ -165,16 +179,6 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 						console.error('EntityService:', error);
 					});
 				}
-			});
-		};
-
-		$scope.openFilter = () => {
-			Dialogs.showWindow({
-				id: 'DocumentTemplate-filter',
-				params: {
-					entity: $scope.filterEntity,
-					optionsType: $scope.optionsType,
-				},
 			});
 		};
 
@@ -206,4 +210,5 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 			return null;
 		};
 		//----------------Dropdowns-----------------//
+
 	});

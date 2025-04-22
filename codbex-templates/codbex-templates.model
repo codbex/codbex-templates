@@ -59,21 +59,21 @@
                 "generateDefaultRoles": "false",
                 "generateReport": "false",
                 "icon": "/services/web/resources/unicons/file.svg",
-                "layoutType": "MANAGE_MASTER",
+                "layoutType": "",
                 "menuIndex": "100",
                 "menuKey": "documenttemplate",
                 "menuLabel": "DocumentTemplate",
                 "name": "DocumentTemplate",
                 "perspectiveHeader": "",
-                "perspectiveIcon": "/services/web/resources/unicons/notes.svg",
-                "perspectiveLabel": "Templates",
-                "perspectiveName": "Templates",
-                "perspectiveNavId": "configurations-navigation-group",
-                "perspectiveOrder": "800",
+                "perspectiveIcon": "/services/web/resources/unicons/copy.svg",
+                "perspectiveLabel": "",
+                "perspectiveName": "Settings",
+                "perspectiveNavId": "",
+                "perspectiveOrder": "100",
                 "perspectiveRole": "",
                 "title": "DocumentTemplate",
                 "tooltip": "DocumentTemplate",
-                "type": "PRIMARY"
+                "type": "SETTING"
             },
             {
                 "properties": [

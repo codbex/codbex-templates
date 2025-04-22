@@ -1,5 +1,0 @@
-{
-    "module": "codbex-templates/gen/codbex-templates/ui/Templates/perspective.js",
-    "extensionPoint": "application-perspectives",
-    "description": "codbex-templates - Perspective - Templates"
-}

@@ -4,13 +4,13 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: 'DocumentTemplate-details',
+    id: 'DocumentTemplate',
     label: 'DocumentTemplate',
     region: 'center',
-    lazyLoad: false,
-	autoFocusTab: true,
-    path: '/services/web/codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/main-details/index.html',
-    perspectiveName: 'Templates'
+    lazyLoad: true,
+	autoFocusTab: false,
+    path: '/services/web/codbex-templates/gen/codbex-templates/ui/Settings/DocumentTemplate/index.html',
+    perspectiveName: 'Settings'
 };
 if (typeof exports !== 'undefined') {
 	exports.getView = () => viewData;

@@ -1,5 +1,0 @@
-{
-    "module": "codbex-templates/gen/codbex-templates/ui/Templates/DocumentTemplate/main-details/view.js",
-    "extensionPoint": "application-views",
-    "description": "codbex-templates - Application View - Main Details"
-}

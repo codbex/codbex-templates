@@ -39,17 +39,25 @@ angular.module('page', ['blimpKit', 'platformView']).controller('PageController'
 		if (entity.Type !== undefined) {
 			filter.$filter.equals.Type = entity.Type;
 		}
-		Dialogs.postMessage({ topic: 'codbex-templates.Templates.DocumentTemplate.entitySearch', data: {
+		Dialogs.postMessage({ topic: 'codbex-templates.Settings.DocumentTemplate.entitySearch', data: {
 			entity: entity,
 			filter: filter
 		}});
-		Dialogs.triggerEvent('codbex-templates.Templates.DocumentTemplate.clearDetails');
 		$scope.cancel();
 	};
 
 	$scope.resetFilter = () => {
 		$scope.entity = {};
 		$scope.filter();
+	};
+
+	$scope.alert = (message) => {
+		if (message) Dialogs.showAlert({
+			title: 'Description',
+			message: message,
+			type: AlertTypes.Information,
+			preformatted: true,
+		});
 	};
 
 	$scope.cancel = () => {
