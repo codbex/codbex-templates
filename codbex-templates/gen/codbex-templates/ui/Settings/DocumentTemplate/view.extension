@@ -1,5 +1,6 @@
 {
     "module": "codbex-templates/gen/codbex-templates/ui/Settings/DocumentTemplate/view.js",
     "extensionPoint": "application-settings",
-    "description": "codbex-templates - Application View"
+    "description": "codbex-templates - Application View",
+    "role": "codbex-templates.Settings.DocumentTemplateReadOnly,codbex-templates.Settings.DocumentTemplateFullAccess"
 }

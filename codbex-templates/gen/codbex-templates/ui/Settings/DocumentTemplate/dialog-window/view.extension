@@ -1,5 +1,6 @@
 {
     "module": "codbex-templates/gen/codbex-templates/ui/Settings/DocumentTemplate/dialog-window/view.js",
     "extensionPoint": "application-windows",
-    "description": "codbex-templates - Application Dialog Window"
+    "description": "codbex-templates - Application Dialog Window",
+    "role": "codbex-templates.Settings.DocumentTemplateReadOnly,codbex-templates.Settings.DocumentTemplateFullAccess"
 }

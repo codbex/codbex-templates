@@ -110,7 +110,7 @@ export class DocumentTemplateRepository {
         this.dao = daoApi.create(DocumentTemplateRepository.DEFINITION, undefined, dataSource);
     }
 
-    public findAll(options?: DocumentTemplateEntityOptions): DocumentTemplateEntity[] {
+    public findAll(options: DocumentTemplateEntityOptions = {}): DocumentTemplateEntity[] {
         return this.dao.list(options);
     }
 
