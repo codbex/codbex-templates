@@ -1,0 +1,34 @@
+name: Release - Application
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-version:
+        description: Release Version
+        required: true
+        default: 1.0.0
+
+run-name: 'version set to ${{ inputs.release-version }} for release'
+
+jobs:
+  modules:
+    uses: codbex/codbex-infra/.github/workflows/module-release.yaml@main
+    with:
+      packages: codbex-templates
+      packages-build: codbex-templates
+      release-version: ${{ inputs.release-version }}
+      release-content: |
+        ## codbex-templates - ${{ inputs.release-version }}
+  
+        Templates - Module
+  
+        ## Installation
+  
+        ```
+        npm install @codbex/codbex-templates@${{ inputs.release-version }}
+        ```
+  
+        ## Access points:
+  
+        - N/A
+    secrets: inherit
