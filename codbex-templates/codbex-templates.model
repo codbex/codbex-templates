@@ -56,7 +56,7 @@
                 "description": "Manage entity DocumentTemplate",
                 "feedPassword": "Z2hwX0RLcFJzSUZNUnJYSllEWHBhN2NURGpNSWNMbEx5czExMWFkTg==",
                 "feedUsername": "TXJnb2JsaW5ncw==",
-                "generateDefaultRoles": "false",
+                "generateDefaultRoles": "true",
                 "generateReport": "false",
                 "icon": "/services/web/resources/unicons/file.svg",
                 "layoutType": "",
@@ -71,6 +71,8 @@
                 "perspectiveNavId": "",
                 "perspectiveOrder": "100",
                 "perspectiveRole": "",
+                "roleRead": "codbex-templates.Settings.DocumentTemplateReadOnly",
+                "roleWrite": "codbex-templates.Settings.DocumentTemplateFullAccess",
                 "title": "DocumentTemplate",
                 "tooltip": "DocumentTemplate",
                 "type": "SETTING"

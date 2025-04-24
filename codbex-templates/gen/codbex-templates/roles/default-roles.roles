@@ -1,2 +1,10 @@
 [
+    {
+        "name": "codbex-templates.Settings.DocumentTemplateReadOnly",
+        "description": "A role that grants read only permission for DocumentTemplate."
+    },
+    {
+        "name": "codbex-templates.Settings.DocumentTemplateFullAccess",
+        "description": "A role that grants full access for DocumentTemplate."
+    }
 ]
