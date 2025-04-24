@@ -1,0 +1,14 @@
+{
+    "name": "@codbex/codbex-templates",
+    "version": "0.0.0",
+    "repository": {
+        "url": "https://github.com/codbex/codbex-templates.git",
+        "type": "git"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
+    "scripts": {
+        "build": "tsc"
+    }
+}
