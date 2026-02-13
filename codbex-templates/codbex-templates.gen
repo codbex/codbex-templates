@@ -2,22 +2,15 @@
   "tablePrefix": "CODBEX_",
   "brand": "codbex",
   "brandUrl": "https://www.codbex.com/",
-  "title": "Codbex Templates",
-  "description": "All Document Templates",
-  "fileName": "codbex-templates",
-  "genFolderName": "codbex-templates",
-  "dataSource": "DefaultDB",
-  "roles": [
-    {
-      "entityName": "DocumentTemplate",
-      "roleRead": "codbex-templates.Settings.DocumentTemplateReadOnly",
-      "roleWrite": "codbex-templates.Settings.DocumentTemplateFullAccess"
-    }
-  ],
+  "title": "Templates Management module",
+  "description": "Managing templates data",
   "projectName": "codbex-templates",
   "workspaceName": "workspace",
   "filePath": "codbex-templates.model",
-  "templateId": "template-application-angular/template/template.js",
+  "templateId": "template-application-angular-v2/template/template.js",
+  "fileName": "codbex-templates",
+  "genFolderName": "codbex-templates",
+  "dataSource": "DefaultDB",
   "perspectives": {
     "Settings": {
       "views": [
@@ -33,6 +26,14 @@
       "role": ""
     }
   },
+  "roles": [
+    {
+      "entityName": "DocumentTemplate",
+      "roleRead": "codbex-templates.Settings.DocumentTemplateReadOnly",
+      "roleWrite": "codbex-templates.Settings.DocumentTemplateFullAccess"
+    }
+  ],
+  "tprefix": "codbex-templates-model",
   "models": [
     {
       "properties": [
@@ -55,6 +56,7 @@
           "isCalculatedProperty": false,
           "widgetLabel": "Id",
           "widgetDropdownUrl": "",
+          "widgetDropdownControllerUrl": "",
           "dataTypeJava": "int",
           "dataTypeTypescript": "number",
           "inputRule": ""
@@ -84,6 +86,7 @@
           "isCalculatedProperty": false,
           "widgetLabel": "Type",
           "widgetDropdownUrl": "/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Settings/NumberService.ts",
+          "widgetDropdownControllerUrl": "/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Settings/NumberController.ts",
           "dataTypeJava": "int",
           "dataTypeTypescript": "number",
           "inputRule": ""
@@ -107,6 +110,7 @@
           "isCalculatedProperty": false,
           "widgetLabel": "Content",
           "widgetDropdownUrl": "",
+          "widgetDropdownControllerUrl": "",
           "dataTypeJava": "",
           "dataTypeTypescript": "unknown",
           "inputRule": ""
@@ -172,6 +176,7 @@
           "isCalculatedProperty": false,
           "widgetLabel": "Id",
           "widgetDropdownUrl": "",
+          "widgetDropdownControllerUrl": "",
           "dataTypeJava": "int",
           "dataTypeTypescript": "number",
           "inputRule": ""
@@ -196,6 +201,7 @@
           "isCalculatedProperty": false,
           "widgetLabel": "Type",
           "widgetDropdownUrl": "",
+          "widgetDropdownControllerUrl": "",
           "dataTypeJava": "string",
           "dataTypeTypescript": "string",
           "minLength": 0,
@@ -222,6 +228,7 @@
           "isCalculatedProperty": false,
           "widgetLabel": "Prefix",
           "widgetDropdownUrl": "",
+          "widgetDropdownControllerUrl": "",
           "dataTypeJava": "string",
           "dataTypeTypescript": "string",
           "minLength": 0,
@@ -247,6 +254,7 @@
           "isCalculatedProperty": false,
           "widgetLabel": "Length",
           "widgetDropdownUrl": "",
+          "widgetDropdownControllerUrl": "",
           "dataTypeJava": "int",
           "dataTypeTypescript": "number",
           "inputRule": ""
@@ -270,6 +278,7 @@
           "isCalculatedProperty": false,
           "widgetLabel": "Value",
           "widgetDropdownUrl": "",
+          "widgetDropdownControllerUrl": "",
           "dataTypeJava": "int",
           "dataTypeTypescript": "number",
           "inputRule": ""

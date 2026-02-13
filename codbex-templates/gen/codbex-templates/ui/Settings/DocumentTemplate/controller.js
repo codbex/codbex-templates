@@ -1,9 +1,23 @@
-angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
+angular.module('page', ['blimpKit', 'platformView', 'platformLocale', 'EntityService'])
 	.config(['EntityServiceProvider', (EntityServiceProvider) => {
-		EntityServiceProvider.baseUrl = '/services/ts/codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateService.ts';
+		EntityServiceProvider.baseUrl = '/services/ts/codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateController.ts';
 	}])
-	.controller('PageController', ($scope, $http, EntityService, Extensions, ButtonStates) => {
+	.controller('PageController', ($scope, $http, EntityService, Extensions, LocaleService, ButtonStates) => {
 		const Dialogs = new DialogHub();
+		let translated = {
+			yes: 'Yes',
+			no: 'No',
+			deleteConfirm: 'Are you sure you want to delete DocumentTemplate? This action cannot be undone.',
+			deleteTitle: 'Delete DocumentTemplate?'
+		};
+
+		LocaleService.onInit(() => {
+			translated.yes = LocaleService.t('codbex-templates:codbex-templates-model.defaults.yes');
+			translated.no = LocaleService.t('codbex-templates:codbex-templates-model.defaults.no');
+			translated.deleteTitle = LocaleService.t('codbex-templates:codbex-templates-model.defaults.deleteTitle', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)' });
+			translated.deleteConfirm = LocaleService.t('codbex-templates:codbex-templates-model.messages.deleteConfirm', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)' });
+		});
+
 		$scope.dataPage = 1;
 		$scope.dataCount = 0;
 		$scope.dataLimit = 20;
@@ -17,8 +31,10 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 		$scope.triggerPageAction = (action) => {
 			Dialogs.showWindow({
 				hasHeader: true,
-        		title: action.label,
+        		title: LocaleService.t(action.translation.key, action.translation.options, action.label),
 				path: action.path,
+				maxWidth: action.maxWidth,
+				maxHeight: action.maxHeight,
 				closeButton: true
 			});
 		};
@@ -26,7 +42,7 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 		$scope.triggerEntityAction = (action) => {
 			Dialogs.showWindow({
 				hasHeader: true,
-        		title: action.label,
+        		title: LocaleService.t(action.translation.key, action.translation.options, action.label),
 				path: action.path,
 				params: {
 					id: $scope.entity.Id
@@ -71,8 +87,11 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 				let limit = $scope.dataLimit;
 				let request;
 				if (filter) {
-					filter.$offset = offset;
-					filter.$limit = limit;
+					if (!filter.$filter) {
+						filter.$filter = {};
+					}
+					filter.$filter.offset = offset;
+					filter.$filter.limit = limit;
 					request = EntityService.search(filter);
 				} else {
 					request = EntityService.list(offset, limit);
@@ -80,17 +99,19 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 				request.then((response) => {
 					$scope.data = response.data;
 				}, (error) => {
+					const message = error.data ? error.data.message : '';
 					Dialogs.showAlert({
-						title: 'DocumentTemplate',
-						message: `Unable to list/filter DocumentTemplate: '${error.message}'`,
+						title: LocaleService.t('codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE'),
+						message: LocaleService.t('codbex-templates:codbex-templates-model.messages.error.unableToLF', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)', message: message }),
 						type: AlertTypes.Error
 					});
 					console.error('EntityService:', error);
 				});
 			}, (error) => {
+				const message = error.data ? error.data.message : '';
 				Dialogs.showAlert({
-					title: 'DocumentTemplate',
-					message: `Unable to count DocumentTemplate: '${error.message}'`,
+					title: LocaleService.t('codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE'),
+					message: LocaleService.t('codbex-templates:codbex-templates-model.messages.error.unableToCount', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)', message: message }),
 					type: AlertTypes.Error
 				});
 				console.error('EntityService:', error);
@@ -153,16 +174,16 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 
 		$scope.deleteEntity = (entity) => {
 			let id = entity.Id;
-			Dialog.showDialog({
-				title: 'Delete DocumentTemplate?',
-				message: `Are you sure you want to delete DocumentTemplate? This action cannot be undone.`,
+			Dialogs.showDialog({
+				title: translated.deleteTitle,
+				message: translated.deleteConfirm,
 				buttons: [{
 					id: 'delete-btn-yes',
 					state: ButtonStates.Emphasized,
-					label: 'Yes',
+					label: translated.yes,
 				}, {
 					id: 'delete-btn-no',
-					label: 'No',
+					label: translated.no,
 				}]
 			}).then((buttonId) => {
 				if (buttonId === 'delete-btn-yes') {
@@ -172,8 +193,8 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 					}, (error) => {
 						const message = error.data ? error.data.message : '';
 						Dialogs.showAlert({
-							title: 'DocumentTemplate',
-							message: `Unable to delete DocumentTemplate: '${message}'`,
+							title: LocaleService.t('codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE'),
+							message: LocaleService.t('codbex-templates:codbex-templates-model.messages.error.unableToDelete', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)', message: message }),
 							type: AlertTypes.Error
 						});
 						console.error('EntityService:', error);
@@ -186,7 +207,7 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 		$scope.optionsType = [];
 
 
-		$http.get('/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Settings/NumberService.ts').then((response) => {
+		$http.get('/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Settings/NumberController.ts').then((response) => {
 			$scope.optionsType = response.data.map(e => ({
 				value: e.Id,
 				text: e.Type
@@ -196,7 +217,7 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 			const message = error.data ? error.data.message : '';
 			Dialogs.showAlert({
 				title: 'Type',
-				message: `Unable to load data: '${message}'`,
+				message: LocaleService.t('codbex-templates:codbex-templates-model.messages.error.unableToLoad', { message: message }),
 				type: AlertTypes.Error
 			});
 		});
