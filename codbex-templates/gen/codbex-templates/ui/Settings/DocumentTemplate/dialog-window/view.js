@@ -6,6 +6,9 @@
 const viewData = {
     id: 'DocumentTemplate-details',
     label: 'DocumentTemplate',
+    translation: {
+        key: 'codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE',
+    },
     path: '/services/web/codbex-templates/gen/codbex-templates/ui/Settings/DocumentTemplate/dialog-window/index.html',
     perspectiveName: 'Settings'
 };

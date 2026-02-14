@@ -6,6 +6,9 @@
 const viewData = {
     id: 'DocumentTemplate',
     label: 'DocumentTemplate',
+    translation: {
+        key: 'codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE',
+    },
     region: 'center',
     lazyLoad: true,
 	autoFocusTab: false,

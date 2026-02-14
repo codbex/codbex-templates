@@ -6,6 +6,12 @@
 const viewData = {
     id: 'DocumentTemplate-filter',
     label: 'DocumentTemplate Filter',
+    translation: {
+        key: 'codbex-templates:codbex-templates-model.extName',
+        options: {
+            content: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE) $t(codbex-templates:codbex-templates-model.defaults.filter)',
+        }
+    },
     path: '/services/web/codbex-templates/gen/codbex-templates/ui/Settings/DocumentTemplate/dialog-filter/index.html',
     perspectiveName: 'Settings'
 };

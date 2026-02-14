@@ -1,9 +1,14 @@
-angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
+angular.module('page', ['blimpKit', 'platformView', 'platformLocale', 'EntityService'])
 	.config(['EntityServiceProvider', (EntityServiceProvider) => {
-		EntityServiceProvider.baseUrl = '/services/ts/codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateService.ts';
+		EntityServiceProvider.baseUrl = '/services/ts/codbex-templates/gen/codbex-templates/api/Settings/DocumentTemplateController.ts';
 	}])
-	.controller('PageController', ($scope, $http, ViewParameters, EntityService) => {
+	.controller('PageController', ($scope, $http, ViewParameters, LocaleService, EntityService) => {
 		const Dialogs = new DialogHub();
+		const Notifications = new NotificationHub();
+		let description = 'Description';
+		let propertySuccessfullyCreated = 'DocumentTemplate successfully created';
+		let propertySuccessfullyUpdated = 'DocumentTemplate successfully updated';
+
 		$scope.entity = {};
 		$scope.forms = {
 			details: {},
@@ -14,6 +19,15 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 			update: 'Update DocumentTemplate'
 		};
 		$scope.action = 'select';
+
+		LocaleService.onInit(() => {
+			description = LocaleService.t('codbex-templates:codbex-templates-model.defaults.description');
+			$scope.formHeaders.select = LocaleService.t('codbex-templates:codbex-templates-model.defaults.formHeadSelect', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)' });
+			$scope.formHeaders.create = LocaleService.t('codbex-templates:codbex-templates-model.defaults.formHeadCreate', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)' });
+			$scope.formHeaders.update = LocaleService.t('codbex-templates:codbex-templates-model.defaults.formHeadUpdate', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)' });
+			propertySuccessfullyCreated = LocaleService.t('codbex-templates:codbex-templates-model.messages.propertySuccessfullyCreated', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)' });
+			propertySuccessfullyUpdated = LocaleService.t('codbex-templates:codbex-templates-model.messages.propertySuccessfullyUpdated', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)' });
+		});
 
 		let params = ViewParameters.get();
 		if (Object.keys(params).length) {
@@ -29,16 +43,16 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 			entity[$scope.selectedMainEntityKey] = $scope.selectedMainEntityId;
 			EntityService.create(entity).then((response) => {
 				Dialogs.postMessage({ topic: 'codbex-templates.Settings.DocumentTemplate.entityCreated', data: response.data });
-				Dialogs.showAlert({
-					title: 'DocumentTemplate',
-					message: 'DocumentTemplate successfully created',
-					type: AlertTypes.Success
+				Notifications.show({
+					title: LocaleService.t('codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE'),
+					description: propertySuccessfullyCreated,
+					type: 'positive'
 				});
 				$scope.cancel();
 			}, (error) => {
 				const message = error.data ? error.data.message : '';
 				$scope.$evalAsync(() => {
-					$scope.errorMessage = `Unable to create DocumentTemplate: '${message}'`;
+					$scope.errorMessage = LocaleService.t('codbex-templates:codbex-templates-model.messages.error.unableToCreate', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)', message: message });
 				});
 				console.error('EntityService:', error);
 			});
@@ -50,45 +64,43 @@ angular.module('page', ['blimpKit', 'platformView', 'EntityService'])
 			entity[$scope.selectedMainEntityKey] = $scope.selectedMainEntityId;
 			EntityService.update(id, entity).then((response) => {
 				Dialogs.postMessage({ topic: 'codbex-templates.Settings.DocumentTemplate.entityUpdated', data: response.data });
-				Dialogs.showAlert({
-					title: 'DocumentTemplate',
-					message: 'DocumentTemplate successfully updated',
-					type: AlertTypes.Success
+				Notifications.show({
+					title: LocaleService.t('codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE'),
+					description: propertySuccessfullyUpdated,
+					type: 'positive'
 				});
 				$scope.cancel();
 			}, (error) => {
 				const message = error.data ? error.data.message : '';
 				$scope.$evalAsync(() => {
-					$scope.errorMessage = `Unable to update DocumentTemplate: '${message}'`;
+					$scope.errorMessage = LocaleService.t('codbex-templates:codbex-templates-model.messages.error.unableToUpdate', { name: '$t(codbex-templates:codbex-templates-model.t.DOCUMENTTEMPLATE)', message: message });
 				});
 				console.error('EntityService:', error);
 			});
 		};
 
-		$scope.serviceType = '/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Settings/NumberService.ts';
+		$scope.serviceType = '/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Settings/NumberController.ts';
 		
 		$scope.optionsType = [];
 		
-		$http.get('/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Settings/NumberService.ts').then((response) => {
-			$scope.optionsType = response.data.map(e => {
-				return {
-					value: e.Id,
-					text: e.Type
-				}
-			});
+		$http.get('/services/ts/codbex-number-generator/gen/codbex-number-generator/api/Settings/NumberController.ts').then((response) => {
+			$scope.optionsType = response.data.map(e => ({
+				value: e.Id,
+				text: e.Type
+			}));
 		}, (error) => {
 			console.error(error);
 			const message = error.data ? error.data.message : '';
 			Dialogs.showAlert({
 				title: 'Type',
-				message: `Unable to load data: '${message}'`,
+				message: LocaleService.t('codbex-templates:codbex-templates-model.messages.error.unableToLoad', { message: message }),
 				type: AlertTypes.Error
 			});
 		});
 
 		$scope.alert = (message) => {
 			if (message) Dialogs.showAlert({
-				title: 'Description',
+				title: description,
 				message: message,
 				type: AlertTypes.Information,
 				preformatted: true,
